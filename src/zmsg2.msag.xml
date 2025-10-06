@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZMSG2</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Message Class</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Claim has no items, cannot be submitted.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Rejection reason required</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Withdraw is not allowed, PR already approved</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Amount should be greater than 0</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Total claim Value should be greater than 10000</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Submit only possible in Draft state</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Successfully added new row</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Claim already approved</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Claim already rejected</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Claim already submitted</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG2</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Claim already withdrawn</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

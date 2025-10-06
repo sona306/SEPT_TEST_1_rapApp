@@ -1,0 +1,5 @@
+@EndUserText.label: 'service definition for claims'
+define service ZSD_CLAIMS {
+  expose ZC_CLAIMS;
+  expose ZC_CLAIMS_ITEMS;
+}

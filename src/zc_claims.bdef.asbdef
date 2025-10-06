@@ -1,0 +1,36 @@
+projection implementation in class zbp_c_claims unique;
+strict ( 2 );
+use side effects;
+use draft;
+
+define behavior for ZC_CLAIMS //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Prepare;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+
+  use action ApproveClaim;
+  use action RejectClaim;
+  use action SubmitClaim ;
+  use action WithdrawClaim;
+
+  action ( features : instance ) addNewRow result [0..1] entity ZC_CLAIMS_ITEMS;
+  side effects {
+   action addNewRow affects entity _Item;
+  }
+
+  use association _Item { create; with draft;}
+}
+
+define behavior for ZC_CLAIMS_ITEMS //alias <alias_name>
+{
+  use update;
+  use delete;
+  use association _Claims{ with draft; }
+}

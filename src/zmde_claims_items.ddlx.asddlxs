@@ -1,0 +1,60 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: 'Claim Items details',
+        typeNamePlural: 'All Claim Items details',
+        title: { type: #STANDARD, label:'PRItemdetails', value: 'Claimid' }
+    }
+}
+annotate entity ZC_CLAIMS_ITEMS with
+{
+  @UI.facet: [
+          { id: 'GeneralInfo', type: #IDENTIFICATION_REFERENCE, label: 'General Information', position: 10 }
+          ]
+
+  @UI: { lineItem: [ { position: 10, label: 'Claim id',cssDefault.width: '4em' } ],
+     identification: [ { position: 10, label: 'Claim id' } ] }
+  Claimid;
+  @UI: { lineItem: [ { position: 20, label: 'Fiscal Year',cssDefault.width: '4em' } ],
+  identification: [ { position: 20, label: 'Fiscal Year' } ] }
+  Fiscalyear;
+  @UI: { lineItem: [ { position: 20,cssDefault.width: '4em', type: #FOR_ACTION,
+    dataAction: 'ZC_CLAIMS.addNewRow',
+    label: 'Add New Row' } ],
+     identification: [ { position: 20, label: 'Item id' } ] }
+  Itemid;
+  @UI: { lineItem: [ { position: 30, label: 'Expense type',cssDefault.width: '6em' } ],
+     identification: [ { position: 30, label: 'Expense type' } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_EXPENSE', element : 'Type' }}]
+  Expensetype;
+
+  @UI: { lineItem: [ { position: 35, label: 'Attachment',cssDefault.width: '10em', importance: #HIGH } ],
+       identification: [ { position: 35, label: 'Attachment' } ] }
+  Attachment;
+  @UI.hidden: true
+  Mimetype;
+  @UI.hidden: true
+  Filename;
+
+
+  @UI: { lineItem: [ { position: 35, label: 'Currency',cssDefault.width: '4em' } ],
+     identification: [ { position: 40, label: 'Currency' } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_CURR', element : 'Type' }}]
+  CukyField;
+  @UI: { lineItem: [ { position: 50, label: 'Amount',cssDefault.width: '15em' } ],
+     identification: [ { position: 50, label: 'Amount' } ] }
+  @EndUserText.label: 'Amount'
+  Amount;
+  @UI.multiLineText: true
+  @UI: { lineItem: [ { position: 60, label: 'Description',cssDefault.width: '10em' } ],
+     identification: [ { position: 60, label: 'Description',cssDefault.width: '25rem'} ] }
+  // @EndUserText.quickInfo: 'Change value to trigger validation - side effect'
+  Description;
+  @UI: { lineItem: [ { position: 70, label: 'CreatedAt',cssDefault.width: '13em' } ],
+     identification: [ { position: 70, label: 'CreatedAt' } ] }
+  CreatedAt;
+  @UI: { lineItem: [ { position: 80, label: 'CreatedBy',cssDefault.width: '8em' } ],
+     identification: [ { position: 80, label: 'CreatedBy' } ] }
+  CreatedBy;
+
+}

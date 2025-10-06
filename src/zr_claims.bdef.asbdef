@@ -1,0 +1,80 @@
+managed implementation in class zbp_r_claims unique;
+strict ( 2 );
+with draft;
+
+
+define behavior for ZR_CLAIMS //alias <alias_name>
+persistent table zdb_claim
+draft table zdb_d_claim
+late numbering
+lock master total etag CreatedAt
+authorization master ( instance )
+etag master CreatedAt
+{
+  create ( authorization : global);
+  update;
+  delete;
+  draft determine action Prepare;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+
+  field ( readonly ) Claimid, Claimstatus, Fiscalyear, CreatedAt, CreatedBy, Totalamount, Rejectionreason;
+  validation validate_total on save { field Totalamount; create; update; }
+
+  action ( features : instance ) ApproveClaim result [1] $self;
+  action ( features : instance ) RejectClaim parameter ZA_CLAIMS result [1] $self;
+  action ( features : instance ) SubmitClaim result [1] $self;
+  action ( features : instance ) WithdrawClaim result [1] $self;
+  association _Item { create; with draft; }
+
+
+  mapping for zdb_claim
+    {
+      Claimid         = claimid;
+      Claimstatus     = claimstatus;
+      CreatedAt       = created_at;
+      CreatedBy       = created_by;
+      Currency        = currency;
+      Fiscalyear      = fiscalyear;
+      Rejectionreason = rejectionreason;
+      Totalamount     = totalamount;
+    }
+}
+
+define behavior for ZR_CLAIMS_ITEMS //alias <alias_name>
+late numbering
+persistent table zdb_claim_item
+draft table zdb_d_claim_item
+lock dependent by _Claims
+authorization dependent by _Claims
+//etag master <field_name>
+{
+  update( precheck );
+  delete;
+  field ( readonly ) Claimid, Itemid, Fiscalyear, CreatedAt, CreatedBy;
+  validation validate_amount on save { field Amount; create; update; }
+  determination CalcualteTotalAmount on save { create; update; delete; field Amount; }
+  association _Claims { with draft; }
+  side effects
+  {
+    field Amount affects field _Claims.TotalAmount;
+  }
+
+  mapping for zdb_claim_item
+    {
+      Claimid     = claimid;
+      Fiscalyear  = fiscalyear;
+      Amount      = amount;
+      CreatedAt   = created_at;
+      CreatedBy   = created_by;
+      CukyField   = cuky_field;
+      Description = description;
+      Expensetype = expensetype;
+      Itemid      = itemid;
+      Attachment = attachment;
+      Filename = filename;
+      Mimetype = mimetype;
+    }
+}

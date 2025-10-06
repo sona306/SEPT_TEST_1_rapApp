@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+      typeName: 'Expense Reimbursement App',
+      typeNamePlural: 'Expense Reimbursement Apps',
+      title: { type: #STANDARD, label: 'Claim Id', value: 'Claimid' }
+  }
+}
+
+annotate entity ZC_CLAIMS with
+{
+  @UI.facet: [
+          { id: 'GeneralInfo', type: #IDENTIFICATION_REFERENCE, label: 'General Information', position: 10 },
+          { id: 'ITEMS', type: #LINEITEM_REFERENCE, label: 'Claim Items', position: 20, targetElement: '_Item' }
+      ]
+
+  @UI: { lineItem: [ { position: 10, label: 'ClaimId', cssDefault.width: '4em' } ],
+         identification: [ { position: 10, label: 'ClaimId' } ] }
+  @UI.selectionField: [{ position:10 }]
+  Claimid;
+
+  @UI: { lineItem: [ { position: 20, label: 'FiscalYear', cssDefault.width: '4em' } ],
+         identification: [ { position: 20, label: 'FiscalYear' } ] }
+  Fiscalyear;
+
+  @UI: { lineItem: [ { position: 30, label: 'Status',cssDefault.width: '7em' , value: 'Claimstatus' , criticality: 'Statuscriticality'},
+    { type: #FOR_ACTION,dataAction: 'ApproveClaim' , label: 'ApproveClaim' },
+    { type: #FOR_ACTION,dataAction: 'RejectClaim' , label: 'RejectClaim' },
+    { type: #FOR_ACTION,dataAction: 'SubmitClaim' , label: 'SubmitClaim' },
+    { type: #FOR_ACTION,dataAction: 'WithdrawClaim' , label: 'WithdrawClaim' }],
+       identification: [ { position: 30, label: 'Status' } ] }
+  Claimstatus;
+
+  @UI: { lineItem: [ { position: 40, label: 'Rejection Reason', cssDefault.width: '15em' } ],
+         identification: [ { position: 40, label: 'Rejection Reason' } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_REJ', element : 'Value' }}]
+  Rejectionreason;
+
+  @UI: { lineItem: [ { position: 50, label: 'Currency', cssDefault.width: '5em' } ],
+         identification: [ { position: 50, label: 'Currency' } ] }
+  @Consumption.valueHelpDefinition: [{ entity : {name: 'ZR_FILL_CURR', element : 'Type' }}]
+  Currency;
+
+  @UI: { lineItem: [ { position: 60, label: 'Total Amount', cssDefault.width: '10em' } ],
+         identification: [ { position: 60, label: 'Total Amount' } ] }
+  Totalamount;
+
+  @UI: { lineItem: [ { position: 70, label: 'Created At', cssDefault.width: '15em' } ],
+         identification: [ { position: 70, label: 'Created At' } ] }
+  CreatedAt;
+
+  @UI: { lineItem: [ { position: 80, label: 'Created By', cssDefault.width: '8em' } ],
+         identification: [ { position: 80, label: 'Created By' } ] }
+  CreatedBy;
+
+};
